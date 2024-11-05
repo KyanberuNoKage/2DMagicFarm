@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://db6btdl3bksb1"]
+[gd_scene load_steps=24 format=3 uid="uid://db6btdl3bksb1"]
 
 [ext_resource type="Texture2D" uid="uid://drxq6oj7fujub" path="res://PlayerCharacter/SpriteNE_Walk.png" id="1_h3hje"]
 [ext_resource type="Texture2D" uid="uid://debmsx786ghtc" path="res://PlayerCharacter/SpriteNW_Walk.png" id="2_j1mfe"]
 [ext_resource type="Texture2D" uid="uid://c2f6ljtlg1sc2" path="res://PlayerCharacter/SpriteSE_Walk.png" id="3_jo26t"]
 [ext_resource type="Texture2D" uid="uid://bxeqdpsufvh0a" path="res://PlayerCharacter/SpriteSW_Walk.png" id="4_yfkin"]
+[ext_resource type="Script" path="res://PlayerMovement.gd" id="5_16o6i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t32pq"]
 atlas = ExtResource("1_h3hje")
@@ -140,8 +141,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2xfp"]
+radius = 7.0
+height = 26.0
+
+[node name="Players_CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("5_16o6i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ndc2s")
-animation = &"SW_Walk"
+animation = &"NE_Walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_q2xfp")
